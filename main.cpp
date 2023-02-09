@@ -4,7 +4,7 @@ using namespace std;
 
 // forward declaration of a method defined later
 string ArrayToString(int* array, int arraySize);
-
+static const bool DEBUG = true;
 void SelectionSort(int* numbers, int numbersSize) {
    for (int i = 0; i < numbersSize - 1; i++) {
       // Find index of smallest remaining element
@@ -12,19 +12,20 @@ void SelectionSort(int* numbers, int numbersSize) {
       for (int j = i + 1; j < numbersSize; j++) {
          if (numbers[j] < numbers[indexSmallest]) {
             indexSmallest = j;
-           cout << "\tsmallest: " << numbers[j];
-           cout << " @ " << j << endl;
+           if (DEBUG) cout << "\tsmallest: " << numbers[j];
+           if (DEBUG) cout << " @ " << j << endl;
          }
       }
+        if (DEBUG)cout<< "\t\t" << "swap positions " << i;
 
       // Swap numbers[i] and numbers[indexSmallest]
-      cout << "\t\t" << "swap positions " << i;
-      cout << " and " << indexSmallest << endl;
+
+      if (DEBUG) cout << " and " << indexSmallest << endl;
       int temp = numbers[i];
       numbers[i] = numbers[indexSmallest];
       numbers[indexSmallest] = temp;
       // show partially sorted array
-     cout << "\tPART_SORTED: " << ArrayToString(numbers, numbersSize) << endl;
+     if (DEBUG) cout << "\tPART_SORTED: " << ArrayToString(numbers, numbersSize) << endl;
    }
 }
 
