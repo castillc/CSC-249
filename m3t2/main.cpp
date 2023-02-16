@@ -2,15 +2,41 @@
 #include <string>
 using namespace std;
 
+/*
+CSC 249
+M3T2 - INSERTION SORT
+CASTILLAVIRELLESCARLOS
+2/16/23
+-IMPLEMENT BASIC INSERTION SORT
+-TODO:ADD INSTRUMENTATION
+*/
+
+
+static int COMPARES = 0;
+static int SWAPS = 0;
+const bool DEBUG = true;
+
+//forward declaration
+string ArrayToString(int*, int);
+
 void InsertionSort(int* numbers, int numbersSize) {
    for (int i = 1; i < numbersSize; i++) {
       int j = i;
+      COMPARES++;
+
       while (j > 0 && numbers[j] < numbers[j - 1]) {
          // Swap numbers[j] and numbers [j - 1]
+         SWAPS++;
          int temp = numbers[j];
          numbers[j] = numbers[j - 1];
          numbers[j - 1] = temp;
          j--;
+         if (DEBUG) {
+        cout << "\t" << "swapped# " << SWAPS << ": elements "<< numbers [j] << " and " << numbers[j-1] << endl;
+        cout << "\tPART_SORTED: " << ArrayToString(numbers,numbersSize) << endl;
+
+      }
+
       }
    }
 }
@@ -48,4 +74,6 @@ int main() {
 
    // Display the sorted contents of the array
    cout << "SORTED:   " << ArrayToString(numbers, numbersSize) << endl;
+   cout << "Total swaps: " << SWAPS << endl;
+
 }
